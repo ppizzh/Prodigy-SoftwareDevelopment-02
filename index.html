@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess the Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            font-size: 18px;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Guess the Number</h1>
+<p>I have selected a number between 1 and 100. Can you guess what it is?</p>
+
+<input type="number" id="guess" placeholder="Enter your guess">
+<button onclick="checkGuess()">Submit Guess</button>
+
+<p id="message"></p>
+<p id="attempts"></p>
+
+<script>
+    let numberToGuess = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+        let userGuess = document.getElementById("guess").value;
+        attempts++;
+        let message = "";
+
+        if (userGuess < numberToGuess) {
+            message = "Too low! Try again.";
+        } else if (userGuess > numberToGuess) {
+            message = "Too high! Try again.";
+        } else {
+            message = `Congratulations! You guessed the number ${numberToGuess} in ${attempts} attempts.`;
+            document.getElementById("guess").disabled = true;
+        }
+
+        document.getElementById("message").innerText = message;
+        document.getElementById("attempts").innerText = `Attempts: ${attempts}`;
+    }
+</script>
+
+</body>
+</html>
